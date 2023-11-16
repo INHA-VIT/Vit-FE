@@ -28,15 +28,15 @@ const ButtonWrapper = styled.div`
 `;
 
 const StyledSlider = styled(Slider)`
-  padding-left: 23px;
+  padding-left: 45px;
   .slick-dots {
     left: 5px;
   }
 `;
 
 const CardCover = styled.img`
-  width: 330px;
-  height: 620px;
+  width: 280px;
+  height: 600px;
   object-fit: contain;
 `;
 
