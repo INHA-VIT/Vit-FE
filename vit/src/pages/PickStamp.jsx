@@ -9,7 +9,7 @@ const Text = styled.h1`
 const Background = styled.div`
   width: 100vw;
   height: auto;
-  background-color: rgba(244, 248, 254, 1);
+  background-color: #ffffff;
 `;
 
 const Count = styled.h2`

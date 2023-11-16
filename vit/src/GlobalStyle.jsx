@@ -1,11 +1,13 @@
 import { createGlobalStyle } from "styled-components";
+import "normalize.css";
 
 export const GlobalStyle = createGlobalStyle`
-*{
-    margin:0;
-    padding:0;
-}
+  body {
+    margin: 0;
+    font-size: 16px;
+  }
 
-html, body, #root{
-    height:100%;
-}`;
+  html, body, #root {
+    height: 100%;
+  }
+`;
