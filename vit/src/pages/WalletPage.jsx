@@ -7,6 +7,7 @@ import jeonjuCard from "../assets/jeonjuCard.png";
 import sokchoCard from "../assets/sokchoCard.png";
 import styled from "styled-components";
 import { IoChevronBack } from "react-icons/io5";
+import { useNavigate } from "react-router-dom";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -41,6 +42,12 @@ const CardCover = styled.img`
 `;
 
 const WalletPage = () => {
+  const navigate = useNavigate();
+
+  const onClickMain = () => {
+    navigate("/mainPage");
+  };
+
   const settings = {
     dots: true,
     infinite: true,
@@ -62,7 +69,7 @@ const WalletPage = () => {
   return (
     <Body>
       <ButtonWrapper>
-        <IoChevronBack />
+        <IoChevronBack onClick={onClickMain} />
         &nbsp;&nbsp;지역 발급 카드 관리
       </ButtonWrapper>
       <StyledSlider {...settings}>
