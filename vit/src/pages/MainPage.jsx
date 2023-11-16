@@ -3,6 +3,7 @@ import styled from "styled-components";
 import card from "../assets/IoCardOutline.png";
 import map from "../assets/map.png";
 import gangneung from "../assets/gangneung.png";
+import { useNavigate } from "react-router-dom";
 
 const Body = styled.div`
   width: 380px;
@@ -107,13 +108,19 @@ const ImageText = styled.div`
 `;
 
 const MainPage = () => {
+  const navigate = useNavigate();
+
+  const onClickCard = () => {
+    navigate("/walletPage");
+  };
+
   return (
     <Body>
       <UserTextWrapper>옥수수 양말 님</UserTextWrapper>
       <WelcomeTextWrapper>
         {" "}
         <WelcomeText>환영합니다</WelcomeText>
-        <WelcomeImage src={card} alt="" />
+        <WelcomeImage src={card} alt="" onClick={onClickCard} />
       </WelcomeTextWrapper>
       <TourMap src={map} />
       <MissionWrapper>미션 진행중인 지역</MissionWrapper>

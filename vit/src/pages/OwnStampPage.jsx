@@ -6,6 +6,7 @@ import tofu from "../assets/tofu.png";
 import landmark from "../assets/landmark.png";
 import beach from "../assets/beach.png";
 import { IoChevronBack } from "react-icons/io5";
+import { useNavigate } from "react-router-dom";
 
 const Body = styled.div`
   width: 380px;
@@ -72,10 +73,16 @@ const StampImg = styled.img`
 `;
 
 const OwnStampPage = () => {
+  const navigate = useNavigate();
+
+  const onClickMain = () => {
+    navigate("/mainPage");
+  };
+
   return (
     <Body>
       <ButtonWrapper>
-        <IoChevronBack />
+        <IoChevronBack onClick={onClickMain} />
         &nbsp;&nbsp;보유 스탬프 내역
       </ButtonWrapper>
       <LocalNameWrapper>Gangneung</LocalNameWrapper>
