@@ -59,15 +59,21 @@ const Arr = styled.div`
 const AboutPlace = () => {
   const { id } = useParams();
   const [places, setPlaces] = useState([]);
-
+  const [stamps, setStamps] = useState("");
   useEffect(() => {
     axios.get(`http://43.200.76.188:8000/places/hotplaces/${1}`).then((res) => {
       setPlaces(res.data[id - 1]);
     });
   }, []);
-  console.log(places);
-  console.log(places.detail_location);
-  console.log(places.image);
+
+  useEffect(() => {
+    axios
+      .get(`http://43.200.76.188:8000/places/stamps_by_hotplace/${id}`)
+      .then((res) => {
+        setStamps(res.data);
+      });
+  }, [id]);
+
   const Imgsrc = places.image;
   return (
     <div>
@@ -80,9 +86,10 @@ const AboutPlace = () => {
         <Line />
         <Address>VIT의 STAMP</Address>
         <Arr>
-          <SImg></SImg>
-          <SImg></SImg>
-          <SImg></SImg>
+          {stamps &&
+            stamps.map((stamp, index) => (
+              <SImg key={index} src={stamp.image} />
+            ))}
         </Arr>
       </Body>
     </div>

@@ -113,6 +113,9 @@ const MainPage = () => {
   const onClickCard = () => {
     navigate("/walletPage");
   };
+  const onClickMissionArea = () => {
+    navigate("/DetailPage"); // 원하는 경로로 변경
+  };
 
   return (
     <Body>
@@ -124,7 +127,7 @@ const MainPage = () => {
       </WelcomeTextWrapper>
       <TourMap src={map} />
       <MissionWrapper>미션 진행중인 지역</MissionWrapper>
-      <ImageContainer>
+      <ImageContainer onClick={onClickMissionArea}>
         <LocalImageWrapper src={gangneung} />
         <ImageText>강 릉</ImageText>
       </ImageContainer>

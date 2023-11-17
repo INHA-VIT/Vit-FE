@@ -99,6 +99,16 @@ const DetailPage = () => {
     navigate(`/AboutPlace/${id}`);
   };
 
+  const renderPlaceImages = (places) => {
+    return places.map((place, index) => (
+      <Img
+        key={index}
+        src={place.image}
+        onClick={() => handleImageClick(place.id)}
+      ></Img>
+    ));
+  };
+
   return (
     <div>
       <Background>
@@ -114,38 +124,11 @@ const DetailPage = () => {
           앞으로 4곳 남았어요! <Percent>60%</Percent>
         </Box>
         <XSText>HOT PLACE 😎</XSText>
-        <Arr>
-          <Img
-            src={hotImageSrc}
-            onClick={() => handleImageClick(hotPlaces[0]?.id)}
-          ></Img>
-          <Img></Img>
-          <Img></Img>
-          <Img></Img>
-          <Img></Img>
-        </Arr>
+        <Arr>{renderPlaceImages(hotPlaces)}</Arr>
         <XSText>TRENDY CAFE ☕ </XSText>
-        <Arr>
-          <Img
-            src={cafeImageSrc}
-            onClick={() => handleImageClick(cafePlaces[0]?.id)}
-          ></Img>
-          <Img></Img>
-          <Img></Img>
-          <Img></Img>
-          <Img></Img>
-        </Arr>
+        <Arr>{renderPlaceImages(cafePlaces)}</Arr>
         <XSText>TRENDY DINING SPOT 🍽️</XSText>
-        <Arr>
-          <Img
-            src={foodImageSrc}
-            onClick={() => handleImageClick(foodPlaces[0]?.id)}
-          ></Img>
-          <Img></Img>
-          <Img></Img>
-          <Img></Img>
-          <Img></Img>
-        </Arr>
+        <Arr>{renderPlaceImages(foodPlaces)}</Arr>
       </Background>
     </div>
   );

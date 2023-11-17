@@ -27,6 +27,11 @@ const Box = styled.img`
   /* background-color: rgba(217, 217, 217, 1); */
   border-radius: 7px;
   text-align: center;
+  border: ${({ isSelected }) => (isSelected ? "5px solid red" : "none")};
+  cursor: pointer;
+  opacity: ${({ isSelected }) =>
+    isSelected ? 0.7 : 1}; // 선택된 이미지는 투명도를 조정
+  transition: opacity 0.3s; // 투명도 전환에 애니메이션 추가
 `;
 
 const Next = styled.button`
@@ -55,27 +60,62 @@ const Highlight = styled.span`
 const PickStamp = () => {
   const { id } = useParams();
   const [places, setPlaces] = useState([]);
+  const navigate = useNavigate();
+  const [selectedImage, setSelectedImage] = useState(null);
+  const handleImageClick = (index) => {
+    setSelectedImage((prev) => (prev === index ? null : index));
+  };
+  const [hotplaceName, setHotplaceName] = useState("");
+  useEffect(() => {
+    axios
+      .get(`http://43.200.76.188:8000/places/get_hot_place_name/${id}`)
+      .then((res) => {
+        setHotplaceName(res.data.name);
+      });
+  }, [id]);
 
   useEffect(() => {
     axios
       .get(`http://43.200.76.188:8000/places/stamps_by_hotplace/${id}`)
       .then((res) => {
-        setPlaces(res.data[id - 1]);
+        setPlaces(res.data);
       });
-  }, []);
-  const ImgSrc = places.image;
+  }, [id]);
   console.log(places);
+  console.log(places.id);
+
+  const ImgSrc = places.image;
+
+  const handleNextClick = () => {
+    if (selectedImage !== null) {
+      const selectedStampId = places[selectedImage].id;
+      // 선택된 이미지의 ID를 가져옴
+      axios.post(`http://43.200.76.188:8000/benefit/get_stamp/`, {
+        stamp_id: selectedStampId,
+      });
+      navigate(`/OwnStampPage`);
+    } else {
+      alert("이미지를 선택하세요.");
+    }
+  };
   return (
     <Background>
       <Text>
-        <Highlight>'{places.name}'</Highlight>
+        <Highlight>'{hotplaceName}'</Highlight>
         에 대한
         <br />
         스탬프입니다
       </Text>
-      <Count>0/1</Count>
-      <Box src={ImgSrc}></Box>
-      <Next>to my Wallet</Next>
+
+      {places.map((place, index) => (
+        <Box
+          key={index}
+          src={place.image}
+          isSelected={selectedImage !== null && selectedImage === index} // 선택된 이미지에 표시를 추가
+          onClick={() => handleImageClick(index)} // 클릭 시 해당 이미지의 인덱스를 전달
+        />
+      ))}
+      <Next onClick={handleNextClick}>to my Wallet</Next>
     </Background>
   );
 };

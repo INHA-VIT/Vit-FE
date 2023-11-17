@@ -73,21 +73,21 @@ const WalletPage = () => {
         &nbsp;&nbsp;지역 발급 카드 관리
       </ButtonWrapper>
       <StyledSlider {...settings}>
-        <div>
+        {/* <div>
           <CardCover src={gangneungCard} />
-        </div>
+        </div> */}
         <div>
           <CardCover src={busanCard} />
         </div>
         <div>
           <CardCover src={jejuCard} />
         </div>
-        <div>
+        {/* <div>
           <CardCover src={jeonjuCard} />
         </div>
         <div>
           <CardCover src={sokchoCard} />
-        </div>
+        </div> */}
       </StyledSlider>
     </Body>
   );
