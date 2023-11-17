@@ -13,9 +13,9 @@ const Body = styled.div`
 `;
 
 const Img = styled.img`
-  min-width: 70vw; /* 추가된 부분 */
-  min-height: 20vh; /* 추가된 부분 */
-  margin-left: 7.5%;
+  width: 80vw; /* 추가된 부분 */
+  height: 20vh; /* 추가된 부분 */
+  margin-left: 10%;
   margin-top: 10vh;
   margin-bottom: 1%;
 `;
@@ -78,7 +78,7 @@ const AboutPlace = () => {
         <Line />
         <Address>{places.description}</Address>
         <Line />
-        <Address>VIT의 TERAROSA STAMP</Address>
+        <Address>VIT의 STAMP</Address>
         <Arr>
           <SImg></SImg>
           <SImg></SImg>

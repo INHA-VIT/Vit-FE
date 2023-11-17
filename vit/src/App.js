@@ -11,7 +11,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Intro />} />
-        <Route path="/pickStamp" element={<PickStamp />} />
+        <Route path="/pickStamp/:id" element={<PickStamp />} />
         <Route path="/detailPage" element={<DetailPage />} />
         <Route path="/mainPage" element={<MainPage />} />
         <Route path="/walletPage" element={<WalletPage />} />

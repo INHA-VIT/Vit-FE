@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import gangneung from "../assets/gangneung.png";
 import cafe from "../assets/cafe.png";
 import tofu from "../assets/tofu.png";
+import axios from "axios";
 import landmark from "../assets/landmark.png";
 import beach from "../assets/beach.png";
 import { IoChevronBack } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 const Body = styled.div`
   width: 380px;
@@ -74,7 +76,18 @@ const StampImg = styled.img`
 
 const OwnStampPage = () => {
   const navigate = useNavigate();
+  const { id } = useParams();
+  const [places, setPlaces] = useState([]);
 
+  useEffect(() => {
+    axios.get(`http://43.200.76.188:8000/users/stamp/`).then((res) => {
+      setPlaces(res.data);
+    });
+  }, []);
+  console.log(places);
+  const ImgSrc = places.image;
+  console.log(places);
+  console.log(places?.image);
   const onClickMain = () => {
     navigate("/mainPage");
   };
@@ -88,42 +101,11 @@ const OwnStampPage = () => {
       <LocalNameWrapper>Gangneung</LocalNameWrapper>
       <LocalImageWrapper src={gangneung} />
       <StampWrapper>
-        <EachStamp>
-          <StampImg src={cafe} />
-        </EachStamp>
-        <EachStamp>
-          <StampImg src={cafe} />
-        </EachStamp>
-        <EachStamp>
-          <StampImg src={cafe} />
-        </EachStamp>
-        <EachStamp>
-          <StampImg src={tofu} />
-        </EachStamp>
-        <EachStamp>
-          <StampImg src={tofu} />
-        </EachStamp>
-        <EachStamp>
-          <StampImg src={tofu} />
-        </EachStamp>
-        <EachStamp>
-          <StampImg src={landmark} />
-        </EachStamp>
-        <EachStamp>
-          <StampImg src={landmark} />
-        </EachStamp>
-        <EachStamp>
-          <StampImg src={landmark} />
-        </EachStamp>
-        <EachStamp>
-          <StampImg src={beach} />
-        </EachStamp>
-        <EachStamp>
-          <StampImg src={beach} />
-        </EachStamp>
-        <EachStamp>
-          <StampImg src={beach} />
-        </EachStamp>
+        {places.map((place, index) => (
+          <EachStamp key={index}>
+            <StampImg src={place.image} />
+          </EachStamp>
+        ))}
       </StampWrapper>
     </Body>
   );

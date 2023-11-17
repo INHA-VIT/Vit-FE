@@ -1,5 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 const Text = styled.h1`
   font-weight: bolder;
@@ -16,12 +19,12 @@ const Count = styled.h2`
   /* padding-top: 5vh; */
   padding-left: 75vw;
 `;
-const Box = styled.div`
+const Box = styled.img`
   width: 70vw;
   height: 20vh;
   margin-left: 15vw;
   margin-top: 5%;
-  background-color: rgba(217, 217, 217, 1);
+  /* background-color: rgba(217, 217, 217, 1); */
   border-radius: 7px;
   text-align: center;
 `;
@@ -50,21 +53,28 @@ const Highlight = styled.span`
 `;
 
 const PickStamp = () => {
+  const { id } = useParams();
+  const [places, setPlaces] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(`http://43.200.76.188:8000/places/stamps_by_hotplace/${id}`)
+      .then((res) => {
+        setPlaces(res.data[id - 1]);
+      });
+  }, []);
+  const ImgSrc = places.image;
+  console.log(places);
   return (
     <Background>
       <Text>
-        <Highlight>'투썸플레이스'</Highlight>
+        <Highlight>'{places.name}'</Highlight>
         에 대한
         <br />
         스탬프입니다
       </Text>
       <Count>0/1</Count>
-      <Box>1</Box>
-      <Box>2</Box>
-      <Box>3</Box>
-      <Box>4</Box>
-      <Box>5</Box>
-      <Box>6</Box>
+      <Box src={ImgSrc}></Box>
       <Next>to my Wallet</Next>
     </Background>
   );
