@@ -115,7 +115,7 @@ const PickStamp = () => {
           onClick={() => handleImageClick(index)} // 클릭 시 해당 이미지의 인덱스를 전달
         />
       ))}
-      <Next onClick={handleNextClick}>to my Wallet</Next>
+      <Next onClick={handleNextClick}>NFT 발급</Next>
     </Background>
   );
 };

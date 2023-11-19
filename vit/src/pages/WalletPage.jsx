@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import busanCard from "../assets/busanCard.png";
 import jejuCard from "../assets/jejuCard.png";
@@ -7,6 +7,7 @@ import { IoChevronBack } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import axios from "axios";
 
 const Body = styled.div`
   width: 380px;
@@ -40,7 +41,14 @@ const CardCover = styled.img`
 
 const WalletPage = () => {
   const navigate = useNavigate();
+  const [cards, setCards] = useState([]);
 
+  useEffect(() => {
+    axios.get(`http://43.200.76.188:8000/users/card/`).then((res) => {
+      setCards(res.data);
+    });
+  }, []);
+  console.log(cards);
   const onClickMain = () => {
     navigate("/mainPage");
   };
@@ -70,21 +78,11 @@ const WalletPage = () => {
         &nbsp;&nbsp;지역 발급 카드 관리
       </ButtonWrapper>
       <StyledSlider {...settings}>
-        {/* <div>
-          <CardCover src={gangneungCard} />
-        </div> */}
-        <div>
-          <CardCover src={busanCard} />
-        </div>
-        <div>
-          <CardCover src={jejuCard} />
-        </div>
-        {/* <div>
-          <CardCover src={jeonjuCard} />
-        </div>
-        <div>
-          <CardCover src={sokchoCard} />
-        </div> */}
+        {cards.map((card) => (
+          <div key={card.id}>
+            <CardCover src={card.image} />
+          </div>
+        ))}
       </StyledSlider>
     </Body>
   );

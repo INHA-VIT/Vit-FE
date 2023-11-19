@@ -26,6 +26,7 @@ const Box = styled.button`
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
+  position: relative;
 `;
 const Arr = styled.div`
   display: flex;
@@ -52,7 +53,14 @@ const ColorText = styled.span`
   font-weight: bolder;
   color: rgba(97, 129, 179, 1);
 `;
-
+const Bar = styled.div`
+  height: 10px;
+  width: ${({ percentage }) => (percentage > 100 ? 100 : percentage)}%;
+  background-color: #d4e4e4;
+  position: absolute; /* 위치를 absolute로 설정 */
+  bottom: 0;
+  left: 0;
+`;
 const Percent = styled.span`
   color: white;
   font-size: xx-large;
@@ -79,7 +87,13 @@ const DetailPage = () => {
       setPlaces(res.data);
     });
   }, []);
+  const [stamps, setStamps] = useState([]);
 
+  useEffect(() => {
+    axios.get(`http://43.200.76.188:8000/users/stamp/`).then((res) => {
+      setStamps(res.data);
+    });
+  }, []);
   const cafePlaces = places.filter(
     (place) => place.category_id && place.category_id.name === "카페"
   );
@@ -99,6 +113,9 @@ const DetailPage = () => {
     navigate(`/AboutPlace/${id}`);
   };
 
+  const goOwn = () => {
+    navigate(`/OwnStampPage`);
+  };
   const renderPlaceImages = (places) => {
     return places.map((place, index) => (
       <Img
@@ -108,21 +125,25 @@ const DetailPage = () => {
       ></Img>
     ));
   };
-
+  const stampCount = stamps.length;
+  const progressPercentage = stampCount * 10 > 100 ? 100 : stampCount * 10;
   return (
     <div>
       <Background>
-        <SText>옥수수양말님, 환영해요!</SText>
+        <SText>옥수수 양말 님, 환영해요!</SText>
         <Text>
-          <ColorText>강릉</ColorText>은 현재 <ColorText>3곳</ColorText>을 방문
+          <ColorText>강릉</ColorText>은 현재
           <br />
-          하셨네요!
+          <ColorText>{stampCount}곳</ColorText>을 방문 하셨네요!
         </Text>
-        <Box>
+        <Box onClick={goOwn}>
           미션완료까지
           <br />
-          앞으로 4곳 남았어요! <Percent>60%</Percent>
+          앞으로 {10 - stampCount}곳 남았어요!{" "}
+          <Percent>{stampCount * 10}%</Percent>
+          <Bar percentage={progressPercentage}></Bar>
         </Box>
+
         <XSText>HOT PLACE 😎</XSText>
         <Arr>{renderPlaceImages(hotPlaces)}</Arr>
         <XSText>TRENDY CAFE ☕ </XSText>

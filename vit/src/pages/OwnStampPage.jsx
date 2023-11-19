@@ -75,7 +75,6 @@ const OwnStampPage = () => {
   const { id } = useParams();
   const [places, setPlaces] = useState([]);
 
-
   useEffect(() => {
     axios.get(`http://43.200.76.188:8000/users/stamp/`).then((res) => {
       setPlaces(res.data);
@@ -86,7 +85,7 @@ const OwnStampPage = () => {
   console.log(places);
   console.log(places?.image);
   const onClickMain = () => {
-    navigate("/mainPage");
+    navigate(-1);
   };
 
   return (
