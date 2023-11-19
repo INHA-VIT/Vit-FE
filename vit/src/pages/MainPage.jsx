@@ -3,6 +3,9 @@ import styled from "styled-components";
 import card from "../assets/IoCardOutline.png";
 import map from "../assets/map.png";
 import gangneung from "../assets/gangneung.png";
+import sokcho from "../assets/sokcho.png";
+import jeonju from "../assets/jeonju.png";
+import seoul from "../assets/seoul.jpg";
 import { useNavigate } from "react-router-dom";
 
 const Body = styled.div`
@@ -135,16 +138,16 @@ const MainPage = () => {
         <span style={{ color: "#6181b3" }}>VIT</span> 추천하는 지역
       </MissionWrapper>
       <ImageContainer>
-        <LocalImageWrapper src={gangneung} />
-        <ImageText>강 릉</ImageText>
+        <LocalImageWrapper src={sokcho} />
+        <ImageText>속 초</ImageText>
       </ImageContainer>
       <ImageContainer>
-        <LocalImageWrapper src={gangneung} />
-        <ImageText>강 릉</ImageText>
+        <LocalImageWrapper src={jeonju} />
+        <ImageText>전 주</ImageText>
       </ImageContainer>
       <ImageContainer>
-        <LocalImageWrapper src={gangneung} />
-        <ImageText>강 릉</ImageText>
+        <LocalImageWrapper src={seoul} />
+        <ImageText>서 울</ImageText>
       </ImageContainer>
     </Body>
   );

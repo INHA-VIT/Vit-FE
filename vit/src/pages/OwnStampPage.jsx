@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import gangneung from "../assets/gangneung.png";
-import cafe from "../assets/cafe.png";
-import tofu from "../assets/tofu.png";
 import axios from "axios";
-import landmark from "../assets/landmark.png";
-import beach from "../assets/beach.png";
 import { IoChevronBack } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";

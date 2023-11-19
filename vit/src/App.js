@@ -4,9 +4,31 @@ import DetailPage from "./pages/DetailPage";
 import WalletPage from "./pages/WalletPage";
 import OwnStampPage from "./pages/OwnStampPage";
 import MainPage from "./pages/MainPage";
+import Test from "../src/pages/Test";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { useEffect, useState } from "react";
 import AboutPlace from "./pages/AboutPlace";
 function App() {
+  const [account, setAccount] = useState("");
+
+  const getAccount = async () => {
+    try {
+      if (window.ethereum) {
+        const accounts = await window.ethereum.request({
+          method: "eth_requestAccounts",
+        });
+        setAccount(accounts[0]);
+      } else {
+        alert("Install Metamask!");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getAccount();
+  }, [account]);
   return (
     <BrowserRouter>
       <Routes>
@@ -17,6 +39,7 @@ function App() {
         <Route path="/walletPage" element={<WalletPage />} />
         <Route path="/ownStampPage" element={<OwnStampPage />} />
         <Route path="/aboutplace/:id" element={<AboutPlace />} />
+        <Route path="/test" element={<Test account={account} />} />
       </Routes>
     </BrowserRouter>
   );
