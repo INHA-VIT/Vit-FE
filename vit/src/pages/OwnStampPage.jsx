@@ -5,7 +5,7 @@ import axios from "axios";
 import { IoChevronBack } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
-
+import { useRef } from "react";
 const Body = styled.div`
   width: 380px;
   height: 840px;
@@ -74,13 +74,16 @@ const OwnStampPage = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const [places, setPlaces] = useState([]);
-
-  const stampCount = places.length;
+  const alertShownRef = useRef(false);
   useEffect(() => {
     axios.get(`http://43.200.76.188:8000/users/stamp/`).then((res) => {
       setPlaces(res.data);
-      if (stampCount === 10) {
+
+      const updatedStampCount = res.data.length;
+
+      if (updatedStampCount === 10 && !alertShownRef.current) {
         alert("스탬프 미션을 완료하셨습니다. 내 지갑을 확인해보세요!");
+        alertShownRef.current = true; // set the ref to true after showing the alert
       }
     });
   }, []);
