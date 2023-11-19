@@ -1,10 +1,7 @@
 import React from "react";
 import Slider from "react-slick";
-import gangneungCard from "../assets/gangneungCard.png";
 import busanCard from "../assets/busanCard.png";
 import jejuCard from "../assets/jejuCard.png";
-import jeonjuCard from "../assets/jeonjuCard.png";
-import sokchoCard from "../assets/sokchoCard.png";
 import styled from "styled-components";
 import { IoChevronBack } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
