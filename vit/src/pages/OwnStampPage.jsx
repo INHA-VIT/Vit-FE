@@ -75,17 +75,21 @@ const OwnStampPage = () => {
   const { id } = useParams();
   const [places, setPlaces] = useState([]);
 
+  const stampCount = places.length;
   useEffect(() => {
     axios.get(`http://43.200.76.188:8000/users/stamp/`).then((res) => {
       setPlaces(res.data);
+      if (stampCount === 10) {
+        alert("스탬프 미션을 완료하셨습니다. 내 지갑을 확인해보세요!");
+      }
     });
   }, []);
   console.log(places);
   const ImgSrc = places.image;
-  console.log(places);
-  console.log(places?.image);
+  console.log(places.length);
+
   const onClickMain = () => {
-    navigate(-1);
+    navigate(`/DetailPage`);
   };
 
   return (

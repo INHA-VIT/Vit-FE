@@ -81,19 +81,33 @@ const Img = styled.img`
 
 const DetailPage = () => {
   const [places, setPlaces] = useState([]);
-  const navigate = useNavigate();
-  useEffect(() => {
-    axios.get(`http://43.200.76.188:8000/places/hotplaces/${1}`).then((res) => {
-      setPlaces(res.data);
-    });
-  }, []);
   const [stamps, setStamps] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get(`http://43.200.76.188:8000/users/stamp/`).then((res) => {
-      setStamps(res.data);
-    });
+    const fetchData = async () => {
+      try {
+        const placesResponse = await axios.get(
+          `http://43.200.76.188:8000/places/hotplaces/${1}`
+        );
+        setPlaces(placesResponse.data);
+
+        const stampsResponse = await axios.get(
+          `http://43.200.76.188:8000/users/stamp/`
+        );
+        setStamps(stampsResponse.data);
+
+        const stampCount = stampsResponse.data.length;
+        const progressPercentage =
+          stampCount * 10 > 100 ? 100 : stampCount * 10;
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
   }, []);
+
   const cafePlaces = places.filter(
     (place) => place.category_id && place.category_id.name === "카페"
   );
@@ -126,6 +140,7 @@ const DetailPage = () => {
     ));
   };
   const stampCount = stamps.length;
+
   const progressPercentage = stampCount * 10 > 100 ? 100 : stampCount * 10;
   return (
     <div>
