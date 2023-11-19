@@ -39,6 +39,8 @@ const Box = styled.img`
 `;
 
 const Next = styled.button`
+  @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap");
+  font-family: "Noto Sans KR", sans-serif;
   width: 80vw;
   height: 7vh;
   margin-left: 10vw;
@@ -47,7 +49,8 @@ const Next = styled.button`
   border-radius: 7px;
   text-align: center;
   color: white;
-  font-size: 30px;
+  font-size: 28px;
+  font-weight: 700;
   margin-bottom: 5%;
   border: none;
 `;
