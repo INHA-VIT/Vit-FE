@@ -18,6 +18,7 @@ const Img = styled.img`
   margin-left: 10%;
   margin-top: 10vh;
   margin-bottom: 1%;
+  border-radius: 10px;
 `;
 
 const Text = styled.h1`
