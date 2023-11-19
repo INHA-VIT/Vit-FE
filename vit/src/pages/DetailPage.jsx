@@ -15,6 +15,7 @@ const Box = styled.button`
   font-weight: 500;
   margin-left: 10vw;
   margin-top: 3%;
+  margin-bottom: 5vh;
   padding-bottom: 8vh;
   background-color: rgba(97, 129, 179, 1);
   border-radius: 7px;
@@ -35,18 +36,28 @@ const Arr = styled.div`
   overflow-x: auto;
   width: 100%; //부모 컨테이너에 꽉 차게 저장
 `;
-const Text = styled.h1`
+const Text = styled.div`
+  @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap");
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 25px;
   font-weight: bolder;
   padding-left: 5vw;
+  margin-bottom: 3vh;
 `;
-const SText = styled.h2`
+const SText = styled.div`
+  @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap");
+  font-family: "Noto Sans KR", sans-serif;
   font-weight: bolder;
   padding-top: 5vh;
   padding-left: 5vw;
+  margin-bottom: 2vh;
+  font-size: 20px;
 `;
-const XSText = styled.h3`
+const XSText = styled.div`
+  @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap");
+  font-family: "Noto Sans KR", sans-serif;
   font-weight: bolder;
-  margin-left: 10vw;
+  margin-left: 5vw;
   margin-top: 3%;
 `;
 const ColorText = styled.span`
@@ -145,11 +156,10 @@ const DetailPage = () => {
   return (
     <div>
       <Background>
-        <SText>옥수수 양말 님, 환영해요!</SText>
+        <SText>옥수수 양말님, 환영해요!</SText>
         <Text>
           <ColorText>강릉</ColorText>은 현재
-          <br />
-          <ColorText>{stampCount}곳</ColorText>을 방문 하셨네요!
+          <ColorText> {stampCount}곳</ColorText>을 방문 하셨네요!
         </Text>
         <Box onClick={goOwn}>
           미션완료까지

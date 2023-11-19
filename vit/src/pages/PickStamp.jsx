@@ -4,10 +4,14 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
-const Text = styled.h1`
+const Text = styled.div`
+  @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap");
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 30px;
   font-weight: bolder;
   padding-top: 5vh;
   padding-left: 5vw;
+  margin-bottom: 3vh;
 `;
 const Background = styled.div`
   width: 100vw;
@@ -35,6 +39,8 @@ const Box = styled.img`
 `;
 
 const Next = styled.button`
+  @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap");
+  font-family: "Noto Sans KR", sans-serif;
   width: 80vw;
   height: 7vh;
   margin-left: 10vw;
@@ -43,7 +49,8 @@ const Next = styled.button`
   border-radius: 7px;
   text-align: center;
   color: white;
-  font-size: 30px;
+  font-size: 28px;
+  font-weight: 700;
   margin-bottom: 5%;
   border: none;
 `;
@@ -102,9 +109,8 @@ const PickStamp = () => {
     <Background>
       <Text>
         <Highlight>'{hotplaceName}'</Highlight>
-        에 대한
         <br />
-        스탬프입니다
+        스탬프 종류입니다
       </Text>
 
       {places.map((place, index) => (
