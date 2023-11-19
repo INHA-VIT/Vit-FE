@@ -79,9 +79,6 @@ const OwnStampPage = () => {
   const { id } = useParams();
   const [places, setPlaces] = useState([]);
 
-  const onClickMissionArea = () => {
-    navigate("/DetailPage"); // 원하는 경로로 변경
-  };
 
   useEffect(() => {
     axios.get(`http://43.200.76.188:8000/users/stamp/`).then((res) => {
