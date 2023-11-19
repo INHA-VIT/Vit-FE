@@ -4,7 +4,6 @@ import DetailPage from "./pages/DetailPage";
 import WalletPage from "./pages/WalletPage";
 import OwnStampPage from "./pages/OwnStampPage";
 import MainPage from "./pages/MainPage";
-import Test from "../src/pages/Test";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useEffect, useState } from "react";
 import AboutPlace from "./pages/AboutPlace";
@@ -39,7 +38,6 @@ function App() {
         <Route path="/walletPage" element={<WalletPage />} />
         <Route path="/ownStampPage" element={<OwnStampPage />} />
         <Route path="/aboutplace/:id" element={<AboutPlace />} />
-        <Route path="/test" element={<Test account={account} />} />
       </Routes>
     </BrowserRouter>
   );
